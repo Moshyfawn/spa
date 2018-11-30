@@ -1,5 +1,6 @@
 import { LOGOUT, LOGIN, LOGIN_FAIL } from '../consts';
 
+
 // user = object : login, password
 export function login(user) {
     return async (dispatch) => {
@@ -11,9 +12,11 @@ export function login(user) {
                 secondName : 'Butorov',
                 age : 20
             } 
+
             dispatch({ type: LOGIN, payload: fullUser })
         } else {
-            dispatch({ type: LOGIN_FAIL })
+            const errorMessage = 'fuck you!'
+            dispatch({ type: LOGIN_FAIL, payload: errorMessage })
         };
     };
 };

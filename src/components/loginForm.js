@@ -14,7 +14,8 @@ export default class LoginForm extends Component {
         this.setState({ [e.currentTarget.name]: e.currentTarget.value })
     };
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault()
         this.props.onSubmit(this.state)
     };
 

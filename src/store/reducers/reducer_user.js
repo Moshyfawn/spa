@@ -10,7 +10,7 @@ const userReducer = (state=initialState, action) => {
             };
         case LOGIN_FAIL:
             return {
-                ...state, error: 'fuck you!'
+                ...state, error: action.payload
             };
         case LOGOUT:
             return {
