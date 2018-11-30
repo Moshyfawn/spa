@@ -1,8 +1,8 @@
 import { LOGOUT, LOGIN, LOGIN_FAIL } from '../consts';
 
-const initianState = { user: {}, error: '' };
+const initialState = { user: {}, error: '' };
 
-const userReducer = (state=initianState, action) => {
+const userReducer = (state=initialState, action) => {
     switch (action.type) {
         case LOGIN:
             return {
@@ -14,7 +14,7 @@ const userReducer = (state=initianState, action) => {
             };
         case LOGOUT:
             return {
-                ...state, ...initianState
+                ...state, ...initialState
             };
         default:
             return state

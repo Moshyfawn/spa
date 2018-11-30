@@ -4,7 +4,6 @@ import LoginForm from '../../components/loginForm';
 
  export default class LoginPage extends Component {
     render() {
-        console.log(this.props.user, this.props.error)
         return (
             // loginForm
             <div>
