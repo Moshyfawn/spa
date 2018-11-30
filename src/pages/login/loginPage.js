@@ -4,9 +4,11 @@ import LoginForm from '../../components/loginForm';
 
  export default class LoginPage extends Component {
 
-    // componentDidUpdate = () => {
-
-    // }
+    componentDidUpdate = (prevProps) => {
+        if (Object.keys(prevProps.user).length === 0 && Object.keys(this.props.user).length !== 0) {
+            this.props.history.push('/')
+        };
+    }
 
     render() {
         return (
