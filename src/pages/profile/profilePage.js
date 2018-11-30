@@ -5,7 +5,7 @@ import React, { Component } from 'react';
         return (
             // loginForm
             <div>
-                Hi, Oleg!
+                This is your profile!
             </div>
         );
     };

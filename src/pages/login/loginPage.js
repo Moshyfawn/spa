@@ -6,7 +6,7 @@ import LoginForm from '../../components/loginForm';
 
     componentDidUpdate = (prevProps) => {
         if (Object.keys(prevProps.user).length === 0 && Object.keys(this.props.user).length !== 0) {
-            this.props.history.push('/')
+            this.props.history.push('/profile')
         };
     }
 
