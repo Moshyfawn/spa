@@ -1,7 +1,5 @@
 import { LOGOUT, LOGIN, LOGIN_FAIL } from '../consts';
 
-
-// user = object : login, password
 export function login(user) {
     return async (dispatch) => {
         if (user.login === 'Oleg' && user.password === 'Marina') {
