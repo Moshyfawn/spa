@@ -14,8 +14,20 @@ export function login(user) {
             } 
 
             dispatch({ type: LOGIN, payload: fullUser })
+
+        } else if (user.login === 'Oleg' && user.password !== 'Marina') {
+            const errorMessagePassword = 'Password is incorrect'
+
+            dispatch({ type: LOGIN_FAIL, payload: errorMessagePassword })
+
+        } else if (user.login !== 'Oleg' && user.password === 'Marina') {
+            const errorMessageLogin = 'Login is incorrect'
+            
+            dispatch({ type: LOGIN_FAIL, payload: errorMessageLogin })
+
         } else {
-            const errorMessage = 'fuck you!'
+            const errorMessage = 'Try again'
+            
             dispatch({ type: LOGIN_FAIL, payload: errorMessage })
         };
     };

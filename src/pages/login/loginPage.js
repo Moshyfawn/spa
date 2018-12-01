@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
 import LoginForm from '../../components/loginForm';
 
  export default class LoginPage extends Component {
@@ -12,10 +14,25 @@ import LoginForm from '../../components/loginForm';
 
     render() {
         return (
-            <div>
+            <Div>
+                <Error className='error'>{this.props.error}</Error>
                 <LoginForm onSubmit={this.props.login} />
-                <div>{this.props.error}</div>
-            </div>
+            </Div>
         );
     };
 };
+
+const Div = styled.div`
+    text-align: right;
+    margin: auto;
+    margin-top: 10em;
+    padding: 3em;
+    width: 9.3em;
+    background: #D3D3D3;
+    border-radius: .3em;
+`;
+
+const Error = styled.div`
+    font-size: .8em;
+    color: red;
+`;
