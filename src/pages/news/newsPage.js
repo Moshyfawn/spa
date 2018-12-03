@@ -34,13 +34,13 @@ export default class newsPage extends Component {
             )
         }
         return (
-            <Grid>
-                <Row>
-                    <Col lg='4' lgOffset={4}>
+            <Grid fluid >
+                <Row >
+                    <Col lg='4' lgOffset={4} >
                         {newsList.length > 0 && newsList}
                     </Col>
 
-                    <Col lg='4'>
+                    <Col lg='5'>
                         <button onClick={this.handleClick}>{this.state.isFormOpen ? 'Cancel' : 'Create'}</button>
                     </Col>
                 </Row>
@@ -58,7 +58,6 @@ const News = styled.div`
 
 // margin: auto;
 // padding: 1em;
-// width: 50em;
 
 const H3 = styled.h3`
     text-transform: uppercase; 
