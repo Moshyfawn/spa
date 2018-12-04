@@ -46,6 +46,7 @@ const Input = styled.input`
     
     &:focus {
         box-shadow: 0 2px #000080;
+    }
     `;
 
 const Label = styled.label`

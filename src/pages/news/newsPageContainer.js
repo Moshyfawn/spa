@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import newsPage from './newsPage';
 
-import { getNews } from '../../store/actions/actions_news';
+import { getNews, createNews, deleteNews, updateNews } from '../../store/actions/actions_news';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    getNews
+    getNews, createNews, deleteNews, updateNews
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(newsPage)

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import NewsCreateModel from '../../components/newsCreateModel';
+import News from '../../components/news';
 
 export default class newsPage extends Component {
 
@@ -19,47 +20,42 @@ export default class newsPage extends Component {
 
     handleClick = (e) => {
         this.setState({ isFormOpen: !this.state.isFormOpen })
-    } 
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.news.length < this.props.news.length) {
+            this.setState({ isFormOpen: false })
+        };
+    }
 
     render() {
 
         let newsList = []
-
+        // console.log(this.props.news)
         if(this.props.news.length > 0){
             newsList = this.props.news.map(item =>
-                <News key={item.id} isFormOpen={this.state.isFormOpen} >
-                    <H3>{item.title}</H3>
-                    <div>{item.body}</div>
-                </News>    
+                <News key={item.id} item={item} deleteNews={this.props.deleteNews} updateNews={this.props.updateNews} />
             )
         }
         return (
             <Grid fluid >
                 <Row >
-                    <Col lg='4' lgOffset={4} >
+                    <StyledCol lg={4} lgOffset={4} isFormOpen={this.state.isFormOpen}>
                         {newsList.length > 0 && newsList}
-                    </Col>
+                    </StyledCol>
 
-                    <Col lg='5'>
+                    <Col lg={4}>
                         <button onClick={this.handleClick}>{this.state.isFormOpen ? 'Cancel' : 'Create'}</button>
                     </Col>
                 </Row>
-                {this.state.isFormOpen && <NewsCreateModel />}
+                {this.state.isFormOpen && <NewsCreateModel onSubmit={this.props.createNews} />}
             </Grid>
         );
     };
 };
 
-const News = styled.div`
-    text-align: center;
-    background: #D3D3D3;
-    opacity: ${props => props.isFormOpen ? '.3' : '1'}
-`;
-
-// margin: auto;
-// padding: 1em;
-
-const H3 = styled.h3`
-    text-transform: uppercase; 
-    margin: 0;
+const StyledCol = styled(Col)`
+    background: #f3f4f5;
+    padding: 0;
+    opacity: ${props => props.isFormOpen ? '.2' : '1'};
 `;

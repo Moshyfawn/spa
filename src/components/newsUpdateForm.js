@@ -6,8 +6,8 @@ export default class newsCreateForm extends Component {
     constructor(props) {
         super(props);
         this.state={
-            title: '',
-            body: ''
+            title: this.props.initialValues.title,
+            body: this.props.initialValues.body
         };
     };
 
@@ -17,7 +17,7 @@ export default class newsCreateForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.onSubmit({...this.state, userId: 1})
+        this.props.onSubmit({...this.props.initialValues, ...this.state})
     };
 
     
@@ -45,7 +45,7 @@ const Input = styled.input`
     
     &:focus {
         box-shadow: 0 2px #000080;
-    }
+        }
     `;
 
     const Textarea = styled.textarea`
@@ -53,7 +53,7 @@ const Input = styled.input`
     
     &:focus {
         box-shadow: 0 2px #000080;
-    }
+        }
     `;
 
 const Label = styled.label`
