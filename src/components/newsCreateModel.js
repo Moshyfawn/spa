@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import NewsCreateForm from './newsCreateForm';
 import NewsUpdateForm from './newsUpdateForm';
+
+
+// onSubmit={this.props.onSubmit} initialValues={this.props.initialValues}
 
 export default class NewsCreateModel extends Component {
     render() {
         return (
             <Container>
-                {this.props.initialValues
-                    ? <NewsUpdateForm onSubmit={this.props.onSubmit} initialValues={this.props.initialValues} />
-                    : <NewsCreateForm onSubmit={this.props.onSubmit} />
-                }
+                <NewsUpdateForm  {...this.props} />
             </Container>
         )
     }
@@ -20,10 +19,13 @@ export default class NewsCreateModel extends Component {
 const Container = styled.div`
     z-index: 2;
     position: absolute;
-    top: 20em;
-    left: 41.7em;
-    padding: 100px;
-    background-color: #006400;
+    top: 50%;
+    left: 50%;
+    width: 60em;
+    height: 30em;
+    margin-top: -15em; /* Half the height */
+    margin-left: -30em;
+    background-color: #a3a3a3;
     border-radius: 5px;
     border: 2px #808000 solid;
     box-shadow: 0 2px #000080;

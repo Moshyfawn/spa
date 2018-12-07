@@ -47,7 +47,7 @@ const newsReducer = (state=initialState, action) => {
             };
         case DELETE_NEWS_SUCCESS:
             return {
-                ...state, news: state.news.filter(item => action.payload !== item.id)
+                ...state, news: state.news.filter(item => action.payload !== item.id), isLoading: false
             };
         case DELETE_NEWS_FAILED:
             return {

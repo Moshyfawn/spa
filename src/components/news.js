@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { AccordionItem,
+        AccordionItemTitle,
+        AccordionItemBody } from 'react-accessible-accordion'
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 import NewsCreateModel from './newsCreateModel';
 
@@ -35,27 +39,62 @@ export default class News extends Component {
         const {item} = this.props
         return (
             <Container>
-                <Title>{item.title}</Title>
-                <Body>{item.body}</Body>
-                <button onClick={this.handleDelete}>Delete</button>
-                <button onClick={this.handleOpenForm}>Update</button>
+                <AccordionItem>
+                    <AccordionItemTitle>
+                        <Title>{item.title}</Title>
+                    </AccordionItemTitle>
+                    <AccordionItemBody>
+                        <Body>{item.body}</Body>
+                    </AccordionItemBody>
+                </AccordionItem>
+                
+                <Options>
+                <Delete onClick={this.handleDelete}>Delete</Delete>
+                <Update onClick={this.handleOpenForm}>Update</Update>
                 {this.state.isFormOpen && <NewsCreateModel onSubmit={this.handleChangeNews} initialValues={item} />}
+                </Options>
+                
             </Container>
             
         )
     }
 }
-
+// 
 const Container = styled.div`
     text-align: center;
-    padding: 0 0.5em;
+    padding: 0 0 0.5em 0;
 `;
 
 const Title = styled.h3`
-    text-transform: uppercase; 
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0.2em 0.2em 0.5em 0.2em;
 `;
 
 const Body = styled.div`
+`;
+
+const Options = styled.div`
+    margin-top: 0.5em;
+`;
+
+const Delete = styled.button`
+    width: 7em;
+    padding: 0.5em 0.9em;
+    margin: 0 0.4em;
+    border: 2px solid grey;
+    border-radius: 10px;
+    background-color: #f3f4f5;
+    color: #777777;
+
+`;
+
+const Update = styled.button`
+    width: 7em;
+    padding: 0.5em 0.9em;
+    margin: 0 0.4em;
+    border: 2px solid grey;
+    border-radius: 10px;
+    background-color: #f3f4f5;
+    color: #777777;
 `;

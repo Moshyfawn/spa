@@ -49,7 +49,6 @@ export function createNews(news) {
 };
 
 export function deleteNews(id) {
-  console.log(id)
   return async (dispatch) => {
     try {
       dispatch({ type: DELETE_NEWS });
@@ -70,6 +69,7 @@ export function updateNews(news) {
         headers
       })
       const data = response.data;
+      console.log(data);
       dispatch({ type: UPDATE_NEWS_SUCCESS, payload: data })
   } catch (error) {
       dispatch({ type: UPDATE_NEWS_FAILED, payload: error })

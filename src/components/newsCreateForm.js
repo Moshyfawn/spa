@@ -27,7 +27,7 @@ export default class newsCreateForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <Label>Title </Label>
-                    <Input name='title' type='text' value={this.state.title} onChange={this.handleChange} />
+                    <Input name='title' type='text' maxLength="10" value={this.state.title} onChange={this.handleChange} />
                 </div>
                 <div>
                     <Label>Body </Label>

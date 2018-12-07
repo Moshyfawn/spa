@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Loader from 'react-loader';
+import { Accordion } from 'react-accessible-accordion';
+import { ifProp } from 'styled-tools';
 
 import NewsCreateModel from '../../components/newsCreateModel';
 import News from '../../components/news';
+import PageWraper from '../../components/pageWraper';
 
 export default class newsPage extends Component {
 
@@ -30,7 +33,7 @@ export default class newsPage extends Component {
     }
 
     render() {
-
+        // Loader options 
         const options = {
             lines: 3,
             length: 15,
@@ -56,31 +59,44 @@ export default class newsPage extends Component {
         let newsList = []
         if(this.props.news.length > 0){
             newsList = this.props.news.map(item =>
-                <News key={item.id} item={item} deleteNews={this.props.deleteNews} updateNews={this.props.updateNews} />
+                <Accordion key={item.id}>
+                    <News item={item} deleteNews={this.props.deleteNews} updateNews={this.props.updateNews} />
+                </Accordion>
+                    
             )
         }
         return (
-            <Loader loaded={!this.props.isLoading} options={options} >
-                    <Grid fluid >
-                    <Row >
-                        <StyledCol lg={4} lgOffset={4} isFormOpen={this.state.isFormOpen}>
-                            {newsList.length > 0 && newsList}
-                        </StyledCol>
-
-                        <Col lg={4}>
-                            <button onClick={this.handleClick}>{this.state.isFormOpen ? 'Cancel' : 'Create'}</button>
-                        </Col>
-                    </Row>
-                    {this.state.isFormOpen && <NewsCreateModel onSubmit={this.props.createNews} />}
-                </Grid>
-            </Loader>
+            <PageWraper>
+                    <Loader loaded={!this.props.isLoading} options={options} >
+                        <Grid >
+                            <Row>  
+                                <Col lg={8} lgOffset={2}>
+                                    <StyledColNews isFormOpen={this.state.isFormOpen}>
+                                        {newsList.length > 0 && newsList}
+                                    </StyledColNews>
+                                </Col>
+                                <Col lg={2}>
+                                    <StyledColOptions>
+                                        <button onClick={this.handleClick}>{this.state.isFormOpen ? 'Cancel' : 'Create'}</button>
+                                    </StyledColOptions>
+                                </Col>
+                            </Row>
+                                {this.state.isFormOpen && <NewsCreateModel onSubmit={this.props.createNews} />}
+                        </Grid>
+                    </Loader>
+            </PageWraper>
             
         );
     };
 };
 
-const StyledCol = styled(Col)`
+const StyledColNews = styled.div`
     background: #f3f4f5;
     padding: 0;
-    opacity: ${props => props.isFormOpen ? '.2' : '1'};
+    opacity: ${ifProp({ isFormOpen : true }, '0.2', '1' )};
+    `;
+
+const StyledColOptions = styled.div`
+    position: fixed;
+    z-index: 1;
 `;
